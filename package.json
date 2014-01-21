@@ -1,0 +1,23 @@
+{
+  "name": "dog-training-front",
+  "version": "0.0.0",
+  "dependencies": {
+    "backbone": "~1.1.0",
+    "jquery": "~2.1.0-rc1",
+    "lodash": "~2.4.1"
+  },
+  "devDependencies": {
+    "gulp": "~3.4.0",
+    "gulp-browserify": "~0.3.3",
+    "gulp-concat": "~2.1.7",
+    "gulp-livereload": "~0.2.0",
+    "gulp-mocha": "~0.4.0",
+    "connect-livereload": "~0.3.2",
+    "tiny-lr": "0.0.5",
+    "connect": "~2.12.0",
+    "gulp-template": "~0.1.1"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
+}
