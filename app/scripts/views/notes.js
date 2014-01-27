@@ -1,31 +1,31 @@
 'use strict';
+
 var Backbone = require('backbone');
+Backbone.$ = window.$;
 var noteCollection = require('../collections/noteCollection');
-var note = require('./note');
+var Note = require('./note');
 
-module.exports = function () {
-  console.log('view')
-  return Backbone.View.extend({
-    el: $('#notes'),
+module.exports = Backbone.View.extend({
+  el: $('#notes'),
 
-    events: {
-      
-    },
-
-    initialize: function () {
-      this.listenTo(noteCollection, 'reset', this.addAll);
-      noteCollection.fetch();
-    },
-
-    addAll: function () {
-      console.log('addAll')
-      this.$el.html('');
-      noteCollection.each(this.add, this);
-    },
+  events: {
     
-    add: function () {
-      var view = new note({model: note});
-      this.$el.append(view.render().el);
-    }
-  });
-}
+  },
+
+  initialize: function () {
+    console.log('fetched')
+    this.listenTo(noteCollection, 'reset', this.addAll);
+    noteCollection.fetch();
+  },
+
+  addAll: function () {
+    console.log('addAll')
+    this.$el.html('dfs');
+    noteCollection.each(this.add, this);
+  },
+  
+  add: function () {
+    var view = new Note({model: note});
+    this.$el.append(view.render().el);
+  }
+});

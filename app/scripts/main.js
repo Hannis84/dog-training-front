@@ -2,9 +2,11 @@
 window.$ = require('jquery');
 window._ = require('lodash');
 var Backbone = require('backbone');
-var view = require('./views/notes');
+Backbone.$ = window.$;
+
+var View = require('./views/notes');
+var Model = require('./models/noteModel');
 
 $(function () {
-  new view();
-  console.log('started');
+  new View();
 });

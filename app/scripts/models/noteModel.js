@@ -1,16 +1,15 @@
 'use strict';
 var Backbone = require('backbone');
+Backbone.$ = window.$;
 
-module.exports = function () {
-	return Backbone.Model.extend({
+module.exports = Backbone.Model.extend({
     defaults: function() {
-      return {
+      {
         note: 'Empty note'
-      };
+      }
     },
 
     initialize: function(note) {
       this.set(note);
     }
   });
-}
