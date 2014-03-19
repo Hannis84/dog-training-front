@@ -4,17 +4,25 @@ var concat = require('gulp-concat');
 var template = require('gulp-template');
 var refresh = require('gulp-livereload');
 var browserify = require('gulp-browserify');
+var prefix = require('gulp-autoprefixer');
 var connect = require('connect');
 var lr = require('tiny-lr');
 var t = require('lodash').template;
 var es = require('event-stream');
 var path = require('path');
+var httpProxy = require('http-proxy');
+var proxy = httpProxy.createProxyServer({});
+
+proxy.on('error', function () {
+  console.log('Start the target server!');
+});
 
 var port = 9000;
 var server = lr();
 
 gulp.task('styles', function () {
 	gulp.src('app/styles/**/*.css')
+    .pipe(prefix("last 1 version", "> 1%"))
   	.pipe(concat('main.css'))
   	.pipe(gulp.dest('app/dist'))
   	.pipe(refresh(server));
@@ -45,25 +53,21 @@ gulp.task('http-server', function() {
 	connect()
   	.use(require('connect-livereload')())
   	.use(connect.static('app'))
-  	.listen(port);
+  	.use(function (req, res) {
+      if (req.url.indexOf('/api') === 0) {
+        req.url = req.url.split('/api').pop();
+        proxy.web(req, res, {
+          target: 'http://127.0.0.1:3000'
+        });
+      }
+    }).listen(port);
 
 	console.log('Server listening on http://localhost:' + port);
 });
 
-gulp.task('server', function() {
-	gulp.run('lr-server');
+gulp.task('default', function () {
+  gulp.start('scripts', 'styles', 'lr-server', 'http-server');
 
-	gulp.watch('app/scripts/**/*.js', function(e) {
-		gulp.run('scripts');
-	});
-
-	gulp.watch('app/styles/**/*.css', function(e) {
-		gulp.run('styles');
-	});
-
-	gulp.run('http-server');
-});
-
-gulp.task('default', function() {
-	gulp.run('scripts', 'styles');    
+  gulp.watch(['app/scripts/**/*.js', 'app/scripts/templates/**.html'], ['scripts']);
+  gulp.watch('app/styles/**/*.less', ['styles']);
 });

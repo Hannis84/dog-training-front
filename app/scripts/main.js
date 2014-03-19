@@ -4,9 +4,12 @@ window._ = require('lodash');
 var Backbone = require('backbone');
 Backbone.$ = window.$;
 
-var View = require('./views/notes');
-var Model = require('./models/noteModel');
+var Router = require('./routes/routes');
 
 $(function () {
-  new View();
+  $(document).ajaxError(function (e, xhr) {
+    if (xhr.status == 401) Backbone.history.navigate('login', {trigger: true});
+  });
+  new Router();
+  Backbone.history.start();
 });
