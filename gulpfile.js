@@ -12,6 +12,7 @@ var es = require('event-stream');
 var path = require('path');
 var httpProxy = require('http-proxy');
 var proxy = httpProxy.createProxyServer({});
+var sass = require('gulp-ruby-sass');
 
 proxy.on('error', function () {
   console.log('Start the target server!');
@@ -21,9 +22,9 @@ var port = 9000;
 var server = lr();
 
 gulp.task('styles', function () {
-	gulp.src('app/styles/**/*.css')
+	gulp.src('app/styles/main.scss')
+    .pipe(sass())
     .pipe(prefix("last 1 version", "> 1%"))
-  	.pipe(concat('main.css'))
   	.pipe(gulp.dest('app/dist'))
   	.pipe(refresh(server));
 });
@@ -43,7 +44,7 @@ gulp.task('scripts', function () {
   .pipe(refresh(server));
 });
 
-gulp.task('lr-server', function(){  
+gulp.task('lr-server', function(){
 	server.listen(35729, function(err){
 		if (err) return console.log(err);
 	});
@@ -69,5 +70,5 @@ gulp.task('default', function () {
   gulp.start('scripts', 'styles', 'lr-server', 'http-server');
 
   gulp.watch(['app/scripts/**/*.js', 'app/scripts/templates/**.html'], ['scripts']);
-  gulp.watch('app/styles/**/*.less', ['styles']);
+  gulp.watch('app/styles/**/*.scss', ['styles']);
 });

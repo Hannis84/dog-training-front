@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "backbone": "~1.1.0",
-    "jquery": "~2.1.0-rc1",
+    "jquery": "~2.1.0",
     "lodash": "~2.4.1"
   },
   "devDependencies": {
@@ -22,7 +22,8 @@
     "gulp-template": "~0.1.1",
     "event-stream": "~3.1.0",
     "http-proxy": "~1.0.2",
-    "gulp-autoprefixer": "0.0.6"
+    "gulp-autoprefixer": "0.0.6",
+    "gulp-ruby-sass": "~0.4.1"
   },
   "engines": {
     "node": ">=0.8.0"
