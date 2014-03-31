@@ -14,7 +14,7 @@ module.exports = Backbone.View.extend({
   },
 
   initialize: function () {
-    
+
   },
 
   render: function () {
@@ -55,5 +55,5 @@ module.exports = Backbone.View.extend({
       }
     });
   }
-  
+
 });

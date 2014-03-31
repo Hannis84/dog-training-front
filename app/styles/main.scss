@@ -1,26 +1,60 @@
 @import "bootstrap/stylesheets/bootstrap.scss";
+@import "training";
 
 body {
     background: #fafafa;
 }
 
 header {
-  background: #F2E9E1;
+  background: #FFF;
   position: relative;
   z-index: 999;
-  padding: 20px 40px;
+  padding: 15px 40px;
   color: #999;
   text-shadow: 1px 2px 1px #fff;
-  box-shadow: 0 6px 0 rgb(216,208,201);
+  box-shadow: 0 1px 1px rgb(216,208,201);
+  border-bottom: 1px solid rgb(216,208,201);
+  width: 100%;
+
   h1 {
     font-size: 22px;
     margin: 0;
     padding: 0;
+    float: left;
+    width: 30%;
+    min-width: 200px;
+  }
+  .navigation {
+    width: 30%;
+    min-width: 205px;
+    float: right;
+    > * {
+      display: inline-block;
+      color: #6B6B6B;
+    }
+    span {
+      font-size: 15px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .sessions { width: 30%; min-width: 90px; }
+    .dogs { width: 30%; min-width: 90px; }
+    .user {
+
+    }
   }
 }
 
 div[role="main"] {
+  margin: 15px auto 0;
+  width: 100%;
+  min-height: 600px;
+  max-width: 1000px;
 
+  // Override styling for form-control inputs
+  .form-control {
+    padding: 6px 5px;
+  }
 }
 
 .hero-unit {
@@ -44,4 +78,35 @@ div[role="main"] {
     .login-form {
       margin-bottom: 50px;
     }
+}
+
+footer {
+  height: 220px;
+  background: #999;
+  width: 100%;
+
+  .center {
+    width: 100%;
+    max-width: 1000px;
+    height: 100%;
+    margin: 0 auto;
+
+    > * {
+      margin-top: 30px;
+    }
+
+    .aalto {
+      background: url('../images/aalto.png') no-repeat;
+      background-size: 120px;
+      width: 150px;
+      height: 130px;
+      float: left;
+    }
+    .about {
+      width: 60%;
+      float: left;
+      color: #f6f6f6;
+      font-size: 13px;
+    }
+  }
 }

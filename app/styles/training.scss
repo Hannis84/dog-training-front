@@ -1,0 +1,17 @@
+.training-header-wrapper {
+  border-bottom: 1px solid #CCC;
+
+  .training-header {
+    margin-left: 10px;
+    float: left;
+    width: 45%;
+  }
+  .training-actions {
+    float: right;
+    margin-right: 10px;
+    .training-add {
+      font-size: 22px;
+      cursor: pointer;
+    }
+  }
+}

@@ -70,5 +70,5 @@ gulp.task('default', function () {
   gulp.start('scripts', 'styles', 'lr-server', 'http-server');
 
   gulp.watch(['app/scripts/**/*.js', 'app/scripts/templates/**.html'], ['scripts']);
-  gulp.watch('app/styles/**/*.scss', ['styles']);
+  gulp.watch(['app/styles/*.scss', 'app/styles/**/*.scss'], ['styles']);
 });
