@@ -24,6 +24,29 @@
     border-bottom: 1px solid #CCC;
     cursor: pointer;
 
+    .training-picture {
+      float: left;
+      width: 120px;
+      height: 100%;
+    }
+
+    .training-information {
+      float: left;
+      .time {
+        height: 20px;
+      }
+      .participant {
+        height: 80px;
+        .name {
+          font-size: 17px;
+          font-weight: 500;
+        }
+        .with {
+          font-style: italic;
+        }
+      }
+    }
+
     .training-arrow {
       float: right;
       height: 100%;
