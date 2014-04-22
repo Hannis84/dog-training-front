@@ -69,12 +69,11 @@ gulp.task('clean', function () {
   return gulp.src('.tmp', {read: false}).pipe(clean());
 });
 
-gulp.task('default', ['clean'], function () {
-  gulp.start('connect', 'scripts', 'styles');
+gulp.task('default', ['connect', 'scripts', 'styles'], function () {
   var server = livereload();
 
   gulp.watch([
-    '.tmp/styles/**/*.css',
+    '.tmp/styles/*.css',
     '.tmp/scripts/**/*.js'
     ], function (file) {
       server.changed(file.path);
