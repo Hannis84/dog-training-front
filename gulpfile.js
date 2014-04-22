@@ -22,6 +22,7 @@ proxy.on('error', function () {
 gulp.task('styles', function () {
 	gulp.src('app/styles/main.scss')
     .pipe(sass())
+    .on('error', console.log)
     .pipe(prefix("last 1 version", "> 1%"))
   	.pipe(gulp.dest('.tmp/styles'))
 
@@ -32,7 +33,8 @@ gulp.task('styles', function () {
 gulp.task('scripts', function () {
 	es.merge(
     gulp.src('app/scripts/main.js')
-    	.pipe(browserify()),
+    	.pipe(browserify())
+      .on('error', console.log),
     gulp.src('app/scripts/templates/*.html')
       .pipe(es.map(function(file, cb) {
         var contents = t(file.contents.toString()).source;
