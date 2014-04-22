@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var mocha = require('gulp-mocha');
 var concat = require('gulp-concat');
 var template = require('gulp-template');
-var refresh = require('gulp-livereload');
+var livereload = require('gulp-livereload');
 var browserify = require('gulp-browserify');
 var prefix = require('gulp-autoprefixer');
 var connect = require('connect');
@@ -13,20 +13,20 @@ var path = require('path');
 var httpProxy = require('http-proxy');
 var proxy = httpProxy.createProxyServer({});
 var sass = require('gulp-ruby-sass');
+var clean = require('gulp-clean');
 
 proxy.on('error', function () {
   console.log('Start the target server!');
 });
 
-var port = 9000;
-var server = lr();
-
 gulp.task('styles', function () {
 	gulp.src('app/styles/main.scss')
     .pipe(sass())
     .pipe(prefix("last 1 version", "> 1%"))
-  	.pipe(gulp.dest('app/dist'))
-  	.pipe(refresh(server));
+  	.pipe(gulp.dest('.tmp/styles'))
+
+  gulp.src('app/styles/bootstrap/fonts/bootstrap/*')
+    .pipe(gulp.dest('.tmp/styles/bootstrap'));
 });
 
 gulp.task('scripts', function () {
@@ -40,20 +40,15 @@ gulp.task('scripts', function () {
         cb(null, file);
       }))
   ).pipe(concat('main.js'))
-  .pipe(gulp.dest('app/dist'))
-  .pipe(refresh(server));
+  .pipe(gulp.dest('.tmp/scripts'))
 });
 
-gulp.task('lr-server', function(){
-	server.listen(35729, function(err){
-		if (err) return console.log(err);
-	});
-});
-
-gulp.task('http-server', function() {
-	connect()
-  	.use(require('connect-livereload')())
+gulp.task('connect', function() {
+	var app = connect()
+  	.use(require('connect-livereload')({port: 35729}))
+    .use(connect.static('.tmp'))
   	.use(connect.static('app'))
+    .use(connect.directory('app'))
   	.use(function (req, res) {
       if (req.url.indexOf('/api') === 0) {
         req.url = req.url.split('/api').pop();
@@ -61,13 +56,29 @@ gulp.task('http-server', function() {
           target: 'http://127.0.0.1:3000'
         });
       }
-    }).listen(port);
+    });
 
-	console.log('Server listening on http://localhost:' + port);
+  require('http').createServer(app)
+    .listen(9000)
+    .on('listening', function () {
+      console.log('Server listening on http://localhost:9000');
+    });
 });
 
-gulp.task('default', function () {
-  gulp.start('scripts', 'styles', 'lr-server', 'http-server');
+gulp.task('clean', function () {
+  return gulp.src('.tmp', {read: false}).pipe(clean());
+});
+
+gulp.task('default', ['clean'], function () {
+  gulp.start('connect', 'scripts', 'styles');
+  var server = livereload();
+
+  gulp.watch([
+    '.tmp/styles/**/*.css',
+    '.tmp/scripts/**/*.js'
+    ], function (file) {
+      server.changed(file.path);
+    });
 
   gulp.watch(['app/scripts/**/*.js', 'app/scripts/templates/**.html'], ['scripts']);
   gulp.watch(['app/styles/*.scss', 'app/styles/**/*.scss'], ['styles']);
