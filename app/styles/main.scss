@@ -3,15 +3,26 @@
 
 body {
   background: #fafafa;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
+  font-size: 12px;
+}
+
+/* Medium screens (640px) */
+@media (min-width: 40rem) {
+  body { font-size: 13px; }
+}
+
+/* Large screens (1024px) */
+@media (min-width: 64rem) {
+  body { font-size: 14px; }
 }
 
 header {
   background: #FFF;
   position: relative;
   z-index: 999;
-  padding: 15px 40px;
+  padding: 15px 5%;
   color: #999;
   text-shadow: 1px 2px 1px #fff;
   box-shadow: 0 1px 1px rgb(216,208,201);
@@ -19,28 +30,28 @@ header {
   width: 100%;
 
   h1 {
-    font-size: 22px;
+    font-size: 1.6em;
     margin: 0;
     padding: 0;
     float: left;
     width: 30%;
-    min-width: 200px;
+    min-width: 160px;
   }
   .navigation {
     width: 30%;
-    min-width: 205px;
+    min-width: 150px;
     float: right;
     > * {
       display: inline-block;
       color: #6B6B6B;
     }
     span {
-      font-size: 15px;
+      font-size: 1.1em;
       cursor: pointer;
       user-select: none;
     }
-    .sessions { width: 30%; min-width: 90px; }
-    .dogs { width: 30%; min-width: 90px; }
+    .sessions { width: 30%; min-width: 60px; }
+    .dogs { width: 30%; min-width: 60px; }
     .user {
 
     }
@@ -83,9 +94,10 @@ div[role="main"] {
 }
 
 footer {
-  height: 220px;
+  height: 250px;
   background: #999;
   width: 100%;
+  margin-top: 20px;
 
   .center {
     width: 100%;

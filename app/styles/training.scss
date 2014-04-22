@@ -19,25 +19,32 @@
 .training-sessions {
   .training-session {
     height: 130px;
-    width: 95%;
+    width: 97%;
     margin: 0 auto;
     border-bottom: 1px solid #CCC;
     cursor: pointer;
 
     .training-picture {
       float: left;
-      width: 120px;
+      width: 15%;
+      max-width: 100px;
       height: 100%;
+      font-size: 4em;
+      div {
+        margin: 30px 0 0 5%;
+      }
     }
 
     .training-information {
       float: left;
       width: 70%;
+      height: 85%;
+      margin-top: 10px;
       .time {
         height: 20px;
       }
       .participant {
-        height: 80px;
+        height: 60px;
         .name {
           font-size: 17px;
           font-weight: 500;
@@ -51,7 +58,8 @@
     .training-arrow {
       float: right;
       height: 100%;
-      width: 44px;
+      width: 10%;
+      max-width: 50px;
       .arrow {
         position: relative;
         background: #fafafa;
