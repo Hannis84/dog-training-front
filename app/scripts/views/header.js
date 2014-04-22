@@ -11,9 +11,8 @@ module.exports = Backbone.View.extend({
   },
 
   logout: function () {
-    console.log('wii');
     $.post('/api/logout', function () {
-      Backbone.history.navigate('login', {trigger: true});
+      Backbone.history.navigate('/login', {trigger: true});
     });
   }
 

@@ -1,0 +1,26 @@
+.new-training {
+  width: 96%;
+  margin: 0 auto;
+  .cover {
+    height: 200px;
+    width: 100%;
+    max-width: 600px;
+    background-color: #EEE;
+    margin: 20px 0 20px;
+  }
+  .goal, .description, .date {
+    margin-bottom: 10px;
+    span {
+      width: 100px;
+      float: left;
+      text-align: top;
+      padding-top: 5px;
+    }
+    input {
+      float: left;
+    }
+  }
+  .submit {
+    margin-left: 100px;
+  }
+}

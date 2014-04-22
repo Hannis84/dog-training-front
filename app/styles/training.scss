@@ -1,5 +1,6 @@
 .training-header-wrapper {
   border-bottom: 1px solid #CCC;
+  height: 50px;
 
   .training-header {
     margin-left: 10px;
@@ -8,9 +9,9 @@
   }
   .training-actions {
     float: right;
-    margin-right: 10px;
+    margin-right: 25px;
     .training-add {
-      font-size: 22px;
+      font-size: 2.2em;
       cursor: pointer;
     }
   }
@@ -37,7 +38,7 @@
 
     .training-information {
       float: left;
-      width: 70%;
+      width: 75%;
       height: 85%;
       margin-top: 10px;
       .time {
@@ -56,10 +57,9 @@
     }
 
     .training-arrow {
-      float: right;
+      float: left;
       height: 100%;
       width: 10%;
-      max-width: 50px;
       .arrow {
         position: relative;
         background: #fafafa;
