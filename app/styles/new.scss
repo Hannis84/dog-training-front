@@ -8,6 +8,36 @@
     background-color: #EEE;
     margin: 20px 0 20px;
   }
+  .type {
+    margin-bottom: 10px;
+    span {
+      width: 95px;
+      display: inline-block;
+    }
+    input[type="radio"] {
+      width: 50px;
+      height: 50px;
+      opacity: 0;
+      position: absolute;
+      margin: 0;
+    }
+    input[type="radio"] + label {
+      background-color: #EEE;
+      border: 1px solid #CCC;
+      margin: 0;
+      width: 50px;
+      height: 50px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: center;
+      line-height: 50px;
+      font-size: 24px;
+      position: static !important;
+    }
+    input[type="radio"]:checked + label {
+      background-color: transparent;
+    }
+  }
   .goal, .description, .date {
     margin-bottom: 10px;
     span {
