@@ -1,16 +1,11 @@
 'use strict';
 var Backbone = require('backbone');
-var productModel = require('../models/trainings');
+var trainings = require('../models/trainings');
 Backbone.$ = window.$;
 
 var Collection = Backbone.Collection.extend({
-  model: productModel,
-  url: '/api/trainings',
-
-  save: function(product) {
-    this.add(product);
-    this.save(product);
-  }
+  model: trainings,
+  url: '/api/trainings'
 });
 
 module.exports = new Collection();

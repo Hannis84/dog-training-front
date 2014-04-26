@@ -2,7 +2,7 @@
 
 var Backbone = require('backbone');
 var Trainings = require('../collections/trainings');
-var TrainingView = require('./training.js');
+var TrainingView = require('./training');
 Backbone.$ = window.$;
 
 module.exports = Backbone.View.extend({
