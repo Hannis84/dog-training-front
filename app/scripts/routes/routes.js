@@ -6,6 +6,7 @@ var LoginView = require('../views/login');
 var TrainingView = require('../views/trainings');
 var NewTrainingView = require('../views/newTraining');
 var DogsView = require('../views/dogs');
+var NewDogView = require('../views/newDog');
 
 module.exports = Backbone.Router.extend({
 
@@ -13,7 +14,8 @@ module.exports = Backbone.Router.extend({
     '(/)': 'index',
     '(/)login(/)': 'showLogin',
     '(/)training/new': 'newTraining',
-    '(/)dogs(/)': 'dogs'
+    '(/)dogs(/)': 'dogs',
+    '(/)dogs/new': 'newDog'
   },
 
   index: function () {
@@ -21,7 +23,7 @@ module.exports = Backbone.Router.extend({
       $('#log-out').removeClass('hidden');
       var view = new TrainingView();
       $('div[role="main"]').html(view.render().el);
-    }.bind(this));
+    });
   },
 
   showLogin: function () {
@@ -42,6 +44,13 @@ module.exports = Backbone.Router.extend({
       var view = new DogsView();
       $('div[role="main"]').html(view.render().el);
     });
+  },
+
+  newDog: function () {
+    this.auth(function () {
+      var view = new NewDogView();
+      $('div[role="main"]').html(view.render().el);
+    })
   },
 
   auth: function (callback) {

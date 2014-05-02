@@ -1,0 +1,22 @@
+<div class="dog clearfix">
+  <div class="dog-picture"></div>
+  <div class="dog-information">
+    <div class="dog-header clearfix">
+      <span class="dog-name"><%- name %></span>
+      <div class="dog-edit">EDIT</div>
+    </div>
+    <div class="dog-about">
+      <div class="dog-info">
+        <div><label>Breed:</label><span><%- breed %></span></div>
+        <div><label>Full name:</label><span><%- fullname %></span></div>
+        <div><label>Breeder:</label><span><%- breeder %></span></div>
+      </div>
+      <div class="dog-sports">
+        <label class="sports">Sports:</label>
+        <% for (var sport in sports) { %>
+          <div><%- sport %></div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
