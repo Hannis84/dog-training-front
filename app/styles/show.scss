@@ -1,0 +1,33 @@
+.show-training {
+  width: 96%;
+  margin: 0 auto;
+  .cover {
+    height: 200px;
+    width: 100%;
+    max-width: 600px;
+    background-color: #EEE;
+    margin: 20px 0 20px;
+  }
+  .type {
+    margin-bottom: 10px;
+    span {
+      width: 95px;
+      display: inline-block;
+    }
+  }
+  .goal, .description, .date {
+    margin-bottom: 10px;
+    label {
+      float: left;
+      width: 100px;
+      font-weight: 100;
+    }
+    span {
+      float: left;
+      width: 280px;
+      @media (min-width: 40rem) {
+        width: 450px;
+      }
+    }
+  }
+}

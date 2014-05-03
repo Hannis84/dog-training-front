@@ -3,7 +3,8 @@ var Backbone = require('backbone');
 Backbone.$ = window.$;
 
 var LoginView = require('../views/login');
-var TrainingView = require('../views/trainings');
+var TrainingsView = require('../views/trainings');
+var TrainingView = require('../views/showTraining');
 var NewTrainingView = require('../views/newTraining');
 var DogsView = require('../views/dogs');
 var NewDogView = require('../views/newDog');
@@ -13,6 +14,7 @@ module.exports = Backbone.Router.extend({
   routes: {
     '(/)': 'index',
     '(/)login(/)': 'showLogin',
+    '(/)training/:id(/)': 'showTraining',
     '(/)training/new': 'newTraining',
     '(/)dogs(/)': 'dogs',
     '(/)dogs/new': 'newDog'
@@ -21,7 +23,7 @@ module.exports = Backbone.Router.extend({
   index: function () {
     this.auth(function () {
       $('#log-out').removeClass('hidden');
-      var view = new TrainingView();
+      var view = new TrainingsView();
       $('div[role="main"]').html(view.render().el);
     });
   },
@@ -30,6 +32,13 @@ module.exports = Backbone.Router.extend({
     this.hide($('#log-out'));
     var view = new LoginView();
     $('div[role="main"]').html(view.render().el);
+  },
+
+  showTraining: function (id) {
+    this.auth(function () {
+      var view = new TrainingView({id: id});
+      $('div[role="main"]').html(view.render().el);
+    });
   },
 
   newTraining: function () {
@@ -50,7 +59,7 @@ module.exports = Backbone.Router.extend({
     this.auth(function () {
       var view = new NewDogView();
       $('div[role="main"]').html(view.render().el);
-    })
+    });
   },
 
   auth: function (callback) {

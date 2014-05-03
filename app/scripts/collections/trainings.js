@@ -1,6 +1,6 @@
 'use strict';
 var Backbone = require('backbone');
-var trainings = require('../models/trainings');
+var trainings = require('../models/training');
 Backbone.$ = window.$;
 
 var Collection = Backbone.Collection.extend({
