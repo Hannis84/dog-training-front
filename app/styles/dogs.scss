@@ -77,3 +77,34 @@
     }
   }
 }
+
+.new-dog {
+  margin: 0 auto;
+  width: 80%;
+  form {
+    margin-top: 50px;
+  }
+  .wrapper {
+    width: 500px;
+  }
+  .placeholder {
+    border: 2px dashed #ccc;
+    width: 200px;
+    height: 200px;
+    margin: 0 0 10px 0;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  figure {
+    float: left;
+    margin-top: 25px;
+    input[type="file"] {
+      width:200px;
+    }
+  }
+  .information {
+    float: right;
+  }
+}

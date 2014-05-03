@@ -8,6 +8,7 @@ module.exports = Backbone.Model.extend({
     fullname: '',
     breed: '',
     breeder: '',
+    image: null,
     sports: []
   }
 });

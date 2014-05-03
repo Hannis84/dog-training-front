@@ -1,5 +1,11 @@
 <div class="new-dog">
+  <h3>Add a new dog</h3>
   <form id="new" role="form">
+    <div class="wrapper clearfix">
+    <figure>
+      <div class="placeholder"></div>
+      <figcaption><input type="file" value="Add image" class="dog-image"></figcaption>
+    </figure>
     <div class="information">
       <div class="form-group">
         <label for="dog-name">Name</label>
@@ -17,7 +23,8 @@
         <label for="dog-breeder">Breeder</label>
         <input type="text" class="form-control" name="breeder" id="dog-breeder" placeholder="Breeder">
       </div>
+      <button class="btn btn-default submit">Submit</button>
     </div>
-    <button class="btn btn-default submit">Submit</button>
+    </div>
   </form>
 </div>

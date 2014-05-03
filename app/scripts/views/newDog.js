@@ -10,7 +10,8 @@ module.exports = Backbone.View.extend({
   template: JST['newDog'],
 
   events: {
-    'submit #new': 'save'
+    'submit #new': 'save',
+    'change .dog-image': 'preview'
   },
 
   initialize: function () {
@@ -20,20 +21,53 @@ module.exports = Backbone.View.extend({
   render: function () {
     this.$el.html(this.template());
     this.$form = this.$('#new');
+    this.$fileSelect = this.$('.dog-image')[0];
+    
     return this;
+  },
+
+  preview: function (e) {
+    var input = e.target
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (event) {
+        $('<img>', {
+          src: event.target.result
+        }).appendTo($('.placeholder'));
+      }
+
+      reader.readAsDataURL(input.files[0]);
+    }
   },
 
   save: function (e) {
     e.preventDefault();
-    //TODO convert to Dogs.create(dog, {success: function () {navvv}})
-    $.ajax({
-      type: 'post',
-      url: '/api/dogs',
-      data: this.$form.serialize(),
-      success: function () {
-        Backbone.history.navigate('/dogs', {trigger: true});
+    var formData = new FormData();
+
+    if (this.$fileSelect.files && this.$fileSelect.files[0]) {
+      var file = this.$fileSelect.files[0];
+      if (file.type.match('image.*')) {
+        formData.append('image', file, file.name);
       }
+    }
+
+    this.$form.serializeArray().forEach(function (obj) {
+      formData.append(obj.name, obj.value);
     });
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/dogs', true);
+
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        Backbone.history.navigate('/dogs', {trigger: true});
+      } else {
+        console.log('error');
+      }
+    };
+
+    xhr.send(formData);
   }
 
 });

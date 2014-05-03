@@ -1,5 +1,9 @@
 <div class="dog clearfix">
-  <div class="dog-picture"></div>
+  <% if (image) { %>
+    <img class="dog-picture" src="data:image/jpeg;base64,<%- image %>">
+  <% } else { %>
+    <div class="dog-picture"></div>
+  <% } %>
   <div class="dog-information">
     <div class="dog-header clearfix">
       <span class="dog-name"><%- name %></span>
