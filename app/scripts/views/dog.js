@@ -9,7 +9,7 @@ module.exports = Backbone.View.extend({
   template: JST['dog'],
 
   events: {
-
+    'click .dog-edit': 'edit'
   },
 
   initialize: function () {
@@ -20,6 +20,10 @@ module.exports = Backbone.View.extend({
   render: function () {
     this.$el.html(this.template(this.model.attributes));
     return this;
+  },
+
+  edit: function () {
+    Backbone.history.navigate('/dogs/' + this.model.get('_id') + '/edit', {trigger: true});
   }
 
 });

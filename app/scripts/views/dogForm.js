@@ -7,7 +7,7 @@ Backbone.$ = window;
 module.exports = Backbone.View.extend({
   tagName: 'section',
   className: 'new-dog',
-  template: JST['newDog'],
+  template: JST['dogForm'],
 
   events: {
     'submit #new': 'save',
@@ -19,10 +19,10 @@ module.exports = Backbone.View.extend({
   },
 
   render: function () {
-    this.$el.html(this.template());
+    this.$el.html(this.template(this.model.attributes));
     this.$form = this.$('#new');
     this.$fileSelect = this.$('.dog-image')[0];
-    
+
     return this;
   },
 
@@ -32,9 +32,9 @@ module.exports = Backbone.View.extend({
       var reader = new FileReader();
 
       reader.onload = function (event) {
-        $('<img>', {
+        $('.placeholder').html($('<img>', {
           src: event.target.result
-        }).appendTo($('.placeholder'));
+        }));
       }
 
       reader.readAsDataURL(input.files[0]);
@@ -57,7 +57,11 @@ module.exports = Backbone.View.extend({
     });
 
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/api/dogs', true);
+    var isNew = this.model.get('_id');
+    var method = isNew ? 'PUT' : 'POST';
+    var url = '/api/dogs' + (isNew ? '/' + this.model.get('_id') : '');
+
+    xhr.open(method, url, true);
 
     xhr.onload = function () {
       if (xhr.status === 200) {

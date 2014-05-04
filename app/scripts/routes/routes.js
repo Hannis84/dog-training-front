@@ -7,7 +7,8 @@ var TrainingsView = require('../views/trainings');
 var TrainingView = require('../views/showTraining');
 var NewTrainingView = require('../views/newTraining');
 var DogsView = require('../views/dogs');
-var NewDogView = require('../views/newDog');
+var Dog = require('../models/dog');
+var DogFormView = require('../views/dogForm');
 
 module.exports = Backbone.Router.extend({
 
@@ -17,7 +18,8 @@ module.exports = Backbone.Router.extend({
     '(/)training/:id(/)': 'showTraining',
     '(/)training/new': 'newTraining',
     '(/)dogs(/)': 'dogs',
-    '(/)dogs/new': 'newDog'
+    '(/)dogs/new': 'newDog',
+    '(/)dogs/:id/edit': 'editDog'
   },
 
   index: function () {
@@ -57,9 +59,17 @@ module.exports = Backbone.Router.extend({
 
   newDog: function () {
     this.auth(function () {
-      var view = new NewDogView();
+      var view = new DogFormView({model: new Dog()});
       $('div[role="main"]').html(view.render().el);
     });
+  },
+
+  editDog: function (id) {
+    var dog = new Dog({id: id});
+    dog.fetch({success: function (dog) {
+      var view = new DogFormView({model: dog});
+      $('div[role="main"]').html(view.render().el);
+    }});
   },
 
   auth: function (callback) {
