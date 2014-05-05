@@ -1,5 +1,5 @@
 .dogs-header-wrapper {
-  border-bottom: 1px solid #CCC;
+  border-bottom: 1px solid #ccc;
   height: 50px;
 
   .dogs-header {
@@ -22,13 +22,13 @@
     height: 160px;
     width: 97%;
     margin: 10px auto 10px;
-    border-bottom: 1px solid #CCC;
+    border-bottom: 1px solid #ccc;
     cursor: pointer;
     .dog-picture {
       float: left;
       width: 120px;
       height: 150px;
-      background-color: #EEE;
+      background-color: #eee;
     }
     .dog-information {
       float: left;
@@ -54,7 +54,7 @@
           width: 50%;
           height: 100%;
           float: left;
-          border-right: 1px solid #CCC;
+          border-right: 1px solid #ccc;
           label {
             width: 80px;
             display: block;
@@ -85,7 +85,7 @@
     margin-top: 50px;
   }
   .wrapper {
-    width: 500px;
+    max-width: 500px;
   }
   .placeholder {
     border: 2px dashed #ccc;
@@ -106,5 +106,6 @@
   }
   .information {
     float: right;
+    width: 250px;
   }
 }

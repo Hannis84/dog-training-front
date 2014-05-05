@@ -21,7 +21,9 @@ module.exports = Backbone.View.extend({
   render: function () {
     this.$el.html(this.template());
     this.$training = this.$('.training-sessions');
+    
     Trainings.fetch();
+
     return this;
   },
 

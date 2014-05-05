@@ -3,5 +3,13 @@ var Backbone = require('backbone');
 Backbone.$ = window.$;
 
 module.exports = Backbone.Model.extend({
-  urlRoot: '/api/trainings'
+  urlRoot: '/api/trainings',
+
+  defaults: {
+    date: '',
+    goal: '',
+    description: '',
+    type: '',
+    image: ''
+  }
 });

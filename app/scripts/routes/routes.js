@@ -5,10 +5,12 @@ Backbone.$ = window.$;
 var LoginView = require('../views/login');
 var TrainingsView = require('../views/trainings');
 var TrainingView = require('../views/showTraining');
-var NewTrainingView = require('../views/newTraining');
+var TrainingFormView = require('../views/trainingForm');
+var Training = require('../models/training');
 var DogsView = require('../views/dogs');
 var Dog = require('../models/dog');
 var DogFormView = require('../views/dogForm');
+var Common = require('../common');
 
 module.exports = Backbone.Router.extend({
 
@@ -25,51 +27,46 @@ module.exports = Backbone.Router.extend({
   index: function () {
     this.auth(function () {
       $('#log-out').removeClass('hidden');
-      var view = new TrainingsView();
-      $('div[role="main"]').html(view.render().el);
-    });
+      this.render(new TrainingsView());
+    }.bind(this));
   },
 
   showLogin: function () {
     this.hide($('#log-out'));
-    var view = new LoginView();
-    $('div[role="main"]').html(view.render().el);
+    this.render(new LoginView());
   },
 
   showTraining: function (id) {
     this.auth(function () {
-      var view = new TrainingView({id: id});
-      $('div[role="main"]').html(view.render().el);
-    });
+      this.render(new TrainingView({id: id}));
+    }.bind(this));
   },
 
   newTraining: function () {
     this.auth(function () {
-      var view = new NewTrainingView();
-      $('div[role="main"]').html(view.render().el);
-    });
+      this.render(new TrainingFormView({model: new Training()}));
+    }.bind(this));
   },
 
   dogs: function () {
     this.auth(function () {
-      var view = new DogsView();
-      $('div[role="main"]').html(view.render().el);
-    });
+      this.render(new DogsView());
+    }.bind(this));
   },
 
   newDog: function () {
     this.auth(function () {
-      var view = new DogFormView({model: new Dog()});
-      $('div[role="main"]').html(view.render().el);
-    });
+      this.render(new DogFormView({model: new Dog()}));
+    }.bind(this));
   },
 
   editDog: function (id) {
-    var dog = new Dog({id: id});
-    dog.fetch({success: function (dog) {
-      var view = new DogFormView({model: dog});
-      $('div[role="main"]').html(view.render().el);
-    }});
+    this.auth(function () {
+      var dog = new Dog({id: id});
+      dog.fetch({success: function (dog) {
+        this.render(new DogFormView({model: dog}));
+      }}.bind(this));
+    }.bind(this));
   },
 
   auth: function (callback) {
@@ -77,6 +74,16 @@ module.exports = Backbone.Router.extend({
     $.get('/api/authenticated', function () {
       callback();
     });
+  },
+
+  render: function (view) {
+    if (Common.activeView) {
+      Common.activeView.trigger('remove');
+    }
+
+    Common.activeView = view;
+
+    $('div[role="main"]').html(view.render().el);
   },
 
   hide: function (elem) {

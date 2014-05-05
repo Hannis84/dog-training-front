@@ -1,12 +1,12 @@
 .new-training {
   width: 96%;
   margin: 0 auto;
-  .cover {
-    height: 200px;
-    width: 100%;
-    max-width: 600px;
-    background-color: #EEE;
-    margin: 20px 0 20px;
+  .wrapper {
+    max-width: 700px;
+    margin: 20px 0 70px;
+  }
+  figure {
+    margin-bottom: 20px;
   }
   .type {
     margin-bottom: 10px;
@@ -15,8 +15,8 @@
       display: inline-block;
     }
     input[type="radio"] {
-      width: 50px;
-      height: 50px;
+      width: 120px;
+      height: 40px;
       opacity: 0;
       position: absolute;
       margin: 0;
@@ -25,14 +25,19 @@
       background-color: #EEE;
       border: 1px solid #CCC;
       margin: 0;
-      width: 50px;
-      height: 50px;
-      border-radius: 6px;
+      width: 120px;
+      height: 40px;
+      border-radius: 3px;
       cursor: pointer;
       text-align: center;
-      line-height: 50px;
-      font-size: 24px;
+      line-height: 26px;
+      font-size: 14px;
       position: static !important;
+      &:before {
+        font-size: 20px;
+        position: relative;
+        top: 5px;
+      }
     }
     input[type="radio"]:checked + label {
       background-color: transparent;
@@ -49,7 +54,22 @@
       float: left;
     }
   }
+  .btn-group {
+    margin-left: 20px;
+  }
+  .glyphicon-calendar {
+    top: 0;
+  }
+  .placeholder {
+    border: 2px dashed #ccc;
+    height: 200px;
+    margin: 0 0 10px 0;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
   .submit {
-    margin-left: 100px;
+    float: right;
   }
 }
