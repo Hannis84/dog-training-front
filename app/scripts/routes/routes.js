@@ -15,8 +15,8 @@ module.exports = Backbone.Router.extend({
   routes: {
     '(/)': 'index',
     '(/)login(/)': 'showLogin',
-    '(/)training/:id(/)': 'showTraining',
     '(/)training/new': 'newTraining',
+    '(/)training/:id(/)': 'showTraining',
     '(/)dogs(/)': 'dogs',
     '(/)dogs/new': 'newDog',
     '(/)dogs/:id/edit': 'editDog'
