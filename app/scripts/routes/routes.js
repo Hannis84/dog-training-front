@@ -65,7 +65,7 @@ module.exports = Backbone.Router.extend({
       var dog = new Dog({id: id});
       dog.fetch({success: function (dog) {
         this.render(new DogFormView({model: dog}));
-      }}.bind(this));
+      }.bind(this)});
     }.bind(this));
   },
 
