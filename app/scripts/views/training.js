@@ -22,7 +22,6 @@ module.exports = Backbone.View.extend({
   },
 
   showTraining: function () {
-    console.log(this.model.attributes._id);
     Backbone.history.navigate('/training/' + this.model.attributes._id, {trigger: true});
   }
 
