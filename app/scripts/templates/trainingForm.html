@@ -6,48 +6,48 @@
   <% } %>
   <form id="new" role="form">
     <div class="wrapper clearfix">
-    <figure>
-      <div class="placeholder">
-      <% if (training.image) { %>
-        <img class="cover-picture" src="data:image/jpeg;base64,<%- training.image %>">
-      <% } %>
-      </div>
-      <figcaption><input type="file" value="Add image" class="cover"></figcaption>
-    </figure>
-    <div class="information">
-      <div class="form-group type">
-        <label>Type</label>
-        <div class="btn-group">
-          <input type="radio" name="type" class="btn btn-default" value="camera" <%- training.type === 'camera' ? 'checked' : '' %>><label class="glyphicon glyphicon-camera"> Agility</label></input>
-          <input type="radio" name="type" class="btn btn-default" value="star" <%- training.type === 'star' ? 'checked' : '' %>><label class="glyphicon glyphicon-star"> Hunting</label></input>
-          <input type="radio" name="type" class="btn btn-default" value="bookmark" <%- training.type === 'bookmark' ? 'checked' : '' %>><label class="glyphicon glyphicon-bookmark"> Running</label></input>
+      <figure>
+        <div class="placeholder">
+        <% if (training.image) { %>
+          <img class="cover-picture" src="data:image/jpeg;base64,<%- training.image %>">
+        <% } %>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="training-date">Date</label>
-        <div class="input-group">
-          <span class="input-group-addon glyphicon glyphicon-calendar"></span>
-          <input type="date" class="form-control" name="date" id="training-date" placeholder="Select a date" value="<%- training.date %>">
+        <figcaption><input type="file" value="Add image" class="cover"></figcaption>
+      </figure>
+      <div class="information">
+        <div class="form-group type">
+          <label>Type</label>
+          <div class="btn-group">
+            <input type="radio" name="type" class="btn btn-default" value="camera" <%- training.type === 'camera' ? 'checked' : '' %>><label class="glyphicon glyphicon-camera"> Agility</label></input>
+            <input type="radio" name="type" class="btn btn-default" value="star" <%- training.type === 'star' ? 'checked' : '' %>><label class="glyphicon glyphicon-star"> Hunting</label></input>
+            <input type="radio" name="type" class="btn btn-default" value="bookmark" <%- training.type === 'bookmark' ? 'checked' : '' %>><label class="glyphicon glyphicon-bookmark"> Running</label></input>
+          </div>
         </div>
+        <div class="form-group">
+          <label for="training-date">Date</label>
+          <div class="input-group">
+            <span class="input-group-addon glyphicon glyphicon-calendar"></span>
+            <input type="date" class="form-control" name="date" id="training-date" placeholder="Select a date" value="<%- training.date %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="dogs">With</label>
+          <select id="dogs" name="dog" class="form-control">
+            <% for (var dog in dogs) { %>
+              <option value="<%- dogs[dog].get('_id') %>" <%- (training.dog  && training.dog._id == dogs[dog].get('_id')) ? 'selected' : '' %>><%- dogs[dog].get('name') %></option>
+            <% } %>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="training-goal">Goal</label>
+          <input type="text" class="form-control" name="goal" id="training-goal" placeholder="Give a goal" value="<%- training.goal %>">
+        </div>
+        <div class="form-group">
+          <label for="training-description">Description</label>
+          <textarea class="form-control" name="description" id="training-description" placeholder="Description"><%- training.description %></textarea>
+        </div>
+      <button class="btn btn-default submit">Submit</button>
       </div>
-      <div class="form-group">
-        <label for="dogs">With</label>
-        <select id="dogs" name="dog" class="form-control">
-          <% for (var dog in dogs) { %>
-            <option value="<%- dogs[dog].get('_id') %>" <%- (training.dog  && training.dog._id == dogs[dog].get('_id')) ? 'selected' : '' %>><%- dogs[dog].get('name') %></option>
-          <% } %>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="training-goal">Goal</label>
-        <input type="text" class="form-control" name="goal" id="training-goal" placeholder="Give a goal" value="<%- training.goal %>">
-      </div>
-      <div class="form-group">
-        <label for="training-description">Description</label>
-        <textarea class="form-control" name="description" id="training-description" placeholder="Description"><%- training.description %></textarea>
-      </div>
-    <button class="btn btn-default submit">Submit</button>
-    </div>
     </div>
   </form>
 </div>

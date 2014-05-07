@@ -11,6 +11,8 @@ var DogsView = require('../views/dogs');
 var Dog = require('../models/dog');
 var Dogs = require('../collections/dogs');
 var DogFormView = require('../views/dogForm');
+var ResultFormView = require('../views/resultForm');
+var Result = require('../models/result');
 var Common = require('../common');
 
 module.exports = Backbone.Router.extend({
@@ -21,6 +23,7 @@ module.exports = Backbone.Router.extend({
     '(/)trainings/new': 'newTraining',
     '(/)trainings/:id(/)': 'showTraining',
     '(/)trainings/:id/edit': 'editTraining',
+    '(/)trainings/:id/results': 'newResult',
     '(/)dogs(/)': 'dogs',
     '(/)dogs/new': 'newDog',
     '(/)dogs/:id/edit': 'editDog'
@@ -87,6 +90,12 @@ module.exports = Backbone.Router.extend({
       dog.fetch({success: function (dog) {
         this.render(new DogFormView({model: dog, editing: true}));
       }.bind(this)});
+    }.bind(this));
+  },
+
+  newResult: function (trainingId, resultId) {
+    this.auth(function () {
+      this.render(new ResultFormView({model: new Result()}));
     }.bind(this));
   },
 
