@@ -15,10 +15,11 @@ module.exports = Backbone.View.extend({
 
   initialize: function (options) {
     this.editing = options.editing ? true : false;
+    this.dogs = options.dogs || [];
   },
 
   render: function () {
-    this.$el.html(this.template({training: this.model.attributes, editing: this.editing}));
+    this.$el.html(this.template({training: this.model.attributes, editing: this.editing, dogs: this.dogs}));
     this.$trainingForm = this.$('#new');
     this.$fileSelect = this.$('.cover')[0];
     return this;
@@ -68,7 +69,7 @@ module.exports = Backbone.View.extend({
       } else {
         console.log('error');
       }
-    };
+    }.bind(this);
 
     xhr.send(formData);
   }

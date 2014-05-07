@@ -31,6 +31,14 @@
         </div>
       </div>
       <div class="form-group">
+        <label for="dogs">With</label>
+        <select id="dogs" name="dog" class="form-control">
+          <% for (var dog in dogs) { %>
+            <option value="<%- dogs[dog].get('_id') %>" <%- (training.dog  && training.dog._id == dogs[dog].get('_id')) ? 'selected' : '' %>><%- dogs[dog].get('name') %></option>
+          <% } %>
+        </select>
+      </div>
+      <div class="form-group">
         <label for="training-goal">Goal</label>
         <input type="text" class="form-control" name="goal" id="training-goal" placeholder="Give a goal" value="<%- training.goal %>">
       </div>

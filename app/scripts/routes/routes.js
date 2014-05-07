@@ -9,6 +9,7 @@ var TrainingFormView = require('../views/trainingForm');
 var Training = require('../models/training');
 var DogsView = require('../views/dogs');
 var Dog = require('../models/dog');
+var Dogs = require('../collections/dogs');
 var DogFormView = require('../views/dogForm');
 var Common = require('../common');
 
@@ -48,16 +49,21 @@ module.exports = Backbone.Router.extend({
 
   newTraining: function () {
     this.auth(function () {
-      this.render(new TrainingFormView({model: new Training()}));
+      Dogs.fetch({success: function (dogs) {
+        this.render(new TrainingFormView({model: new Training(), dogs: Dogs.models}));
+      }.bind(this)});
     }.bind(this));
   },
 
   editTraining: function (id) {
     this.auth(function () {
+      var self = this;
       var training = new Training({id: id});
       training.fetch({success: function (training) {
-        this.render(new TrainingFormView({model: training, editing: true}));
-      }.bind(this)});
+        Dogs.fetch({success: function (dogs) {
+          self.render(new TrainingFormView({model: training, editing: true, dogs: Dogs.models}));
+        }});
+      }});
     }.bind(this));
   },
 

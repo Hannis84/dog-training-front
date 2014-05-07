@@ -44,15 +44,11 @@
       .time {
         height: 20px;
       }
-      .participant {
-        height: 60px;
-        .name {
-          font-size: 17px;
-          font-weight: 500;
-        }
-        .with {
-          font-style: italic;
-        }
+      .with {
+        font-style: italic;
+      }
+      header {
+        margin-bottom: 20px;
       }
     }
 
