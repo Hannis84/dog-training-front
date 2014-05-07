@@ -13,12 +13,12 @@ module.exports = Backbone.View.extend({
     'change .cover': 'preview'
   },
 
-  initialize: function () {
-
+  initialize: function (options) {
+    this.editing = options.editing ? true : false;
   },
 
   render: function () {
-    this.$el.html(this.template(this.model.attributes));
+    this.$el.html(this.template({training: this.model.attributes, editing: this.editing}));
     this.$trainingForm = this.$('#new');
     this.$fileSelect = this.$('.cover')[0];
     return this;
@@ -63,7 +63,8 @@ module.exports = Backbone.View.extend({
 
     xhr.onload = function () {
       if (xhr.status === 200) {
-        Backbone.history.navigate('', {trigger: true});
+        var url = this.editing ? '/trainings/' + this.model.get('_id') : '';
+        Backbone.history.navigate(url, {trigger: true});
       } else {
         console.log('error');
       }

@@ -8,7 +8,7 @@ module.exports = Backbone.View.extend({
   template: JST['training'],
 
   events: {
-    'click .training-session': 'showTraining'
+    'click .training-edit': 'edit'
   },
 
   initialize: function () {
@@ -22,7 +22,7 @@ module.exports = Backbone.View.extend({
   },
 
   showTraining: function () {
-    Backbone.history.navigate('/training/' + this.model.attributes._id, {trigger: true});
+    Backbone.history.navigate('/trainings/' + this.model.get('_id'), {trigger: true});
   }
 
 });

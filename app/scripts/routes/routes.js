@@ -17,8 +17,9 @@ module.exports = Backbone.Router.extend({
   routes: {
     '(/)': 'index',
     '(/)login(/)': 'showLogin',
-    '(/)training/new': 'newTraining',
-    '(/)training/:id(/)': 'showTraining',
+    '(/)trainings/new': 'newTraining',
+    '(/)trainings/:id(/)': 'showTraining',
+    '(/)trainings/:id/edit': 'editTraining',
     '(/)dogs(/)': 'dogs',
     '(/)dogs/new': 'newDog',
     '(/)dogs/:id/edit': 'editDog'
@@ -38,13 +39,25 @@ module.exports = Backbone.Router.extend({
 
   showTraining: function (id) {
     this.auth(function () {
-      this.render(new TrainingView({id: id}));
+      var training = new Training({id: id});
+      training.fetch({success: function (training) {
+        this.render(new TrainingView({model: training}));
+      }.bind(this)});
     }.bind(this));
   },
 
   newTraining: function () {
     this.auth(function () {
       this.render(new TrainingFormView({model: new Training()}));
+    }.bind(this));
+  },
+
+  editTraining: function (id) {
+    this.auth(function () {
+      var training = new Training({id: id});
+      training.fetch({success: function (training) {
+        this.render(new TrainingFormView({model: training, editing: true}));
+      }.bind(this)});
     }.bind(this));
   },
 
@@ -64,7 +77,7 @@ module.exports = Backbone.Router.extend({
     this.auth(function () {
       var dog = new Dog({id: id});
       dog.fetch({success: function (dog) {
-        this.render(new DogFormView({model: dog}));
+        this.render(new DogFormView({model: dog, editing: true}));
       }.bind(this)});
     }.bind(this));
   },

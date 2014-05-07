@@ -14,12 +14,12 @@ module.exports = Backbone.View.extend({
     'change .dog-image': 'preview'
   },
 
-  initialize: function () {
-
+  initialize: function (options) {
+    this.editing = options.editing ? true : false;
   },
 
   render: function () {
-    this.$el.html(this.template(this.model.attributes));
+    this.$el.html(this.template({dog: this.model.attributes, editing: this.editing}));
     this.$form = this.$('#new');
     this.$fileSelect = this.$('.dog-image')[0];
 

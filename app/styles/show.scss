@@ -1,6 +1,19 @@
 .show-training {
   width: 96%;
   margin: 0 auto;
+  .training-edit {
+    float: right;
+    padding: 10px;
+    border-radius: 2px;
+    margin-right: 100px;
+    cursor: pointer;
+    &:before {
+      margin-right: 10px;
+    }
+    &:hover {
+      background: #eee;
+    }
+  }
   .cover {
     height: 200px;
     width: 100%;

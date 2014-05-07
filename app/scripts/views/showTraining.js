@@ -10,16 +10,21 @@ module.exports = Backbone.View.extend({
   className: 'training',
   template: JST['showTraining'],
 
-  initialize: function (options) {
-    this.id = options.id;
+  events: {
+    'click .training-edit': 'edit'
+  },
+
+  initialize: function () {
   },
 
   render: function () {
-    var self = this;
-    var training = new Training({id: this.id});
-    training.fetch({success: function () {
-      self.$el.html(self.template(training.attributes));
-    }});
+    this.$el.html(this.template(this.model.attributes));
     return this;
+  },
+
+  edit: function () {
+    Backbone.history.navigate('/trainings/' + this.model.get('_id') + '/edit', {trigger: true});
+    return false;
   }
+
 });
