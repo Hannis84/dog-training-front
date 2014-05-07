@@ -4,6 +4,10 @@
 @import "dogs";
 @import "show";
 
+html, body {
+  height: 100%;
+}
+
 body {
   background: #fafafa;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -103,8 +107,20 @@ div[role="main"] {
     }
 }
 
-footer {
+.page-wrap {
+  min-height: 100%;
+  margin-bottom: -250px;
+  &:after {
+    content: "";
+    display: block;
+  }
+}
+
+footer, .page-wrap:after {
   height: 250px;
+}
+
+footer {
   background: #453;
   width: 100%;
   margin-top: 20px;
