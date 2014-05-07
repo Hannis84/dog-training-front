@@ -12,7 +12,8 @@ module.exports = Backbone.View.extend({
 
   events: {
     'click .training-edit': 'edit',
-    'click .training-remove': 'destroy'
+    'click .training-remove': 'destroy',
+    'click .results-add': 'add'
   },
 
   initialize: function () {
@@ -31,6 +32,10 @@ module.exports = Backbone.View.extend({
   destroy: function () {
     this.model.destroy();
     Backbone.history.navigate('/', {trigger: true});
+  },
+
+  add: function () {
+    Backbone.history.navigate('/trainings/' + this.model.get('_id') + '/results', {trigger: true});
   }
 
 });
