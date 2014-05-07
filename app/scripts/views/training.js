@@ -8,7 +8,7 @@ module.exports = Backbone.View.extend({
   template: JST['training'],
 
   events: {
-    'click .training-edit': 'edit'
+    'click .training-session': 'showTraining'
   },
 
   initialize: function () {
