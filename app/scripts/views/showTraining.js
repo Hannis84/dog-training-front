@@ -11,7 +11,8 @@ module.exports = Backbone.View.extend({
   template: JST['showTraining'],
 
   events: {
-    'click .training-edit': 'edit'
+    'click .training-edit': 'edit',
+    'click .training-remove': 'destroy'
   },
 
   initialize: function () {
@@ -25,6 +26,11 @@ module.exports = Backbone.View.extend({
   edit: function () {
     Backbone.history.navigate('/trainings/' + this.model.get('_id') + '/edit', {trigger: true});
     return false;
+  },
+
+  destroy: function () {
+    this.model.destroy();
+    Backbone.history.navigate('/', {trigger: true});
   }
 
 });

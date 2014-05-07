@@ -21,7 +21,7 @@ module.exports = Backbone.View.extend({
   render: function () {
     this.$el.html(this.template());
     this.$training = this.$('.training-sessions');
-    
+
     Trainings.fetch();
 
     return this;
@@ -33,7 +33,7 @@ module.exports = Backbone.View.extend({
   },
 
   new: function () {
-    Backbone.history.navigate('/training/new', {trigger: true});
+    Backbone.history.navigate('/trainings/new', {trigger: true});
   }
 
 });
