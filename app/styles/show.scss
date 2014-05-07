@@ -27,18 +27,56 @@
       display: inline-block;
     }
   }
-  .goal, .description, .date {
-    margin-bottom: 10px;
-    label {
-      float: left;
-      width: 100px;
-      font-weight: 100;
+  .details {
+    float: left;
+    width: 20%;
+    .type {
+      .icon {
+        font-size: 6em;
+      }
+      .sport {
+        font-size: 2em;
+      }
     }
-    span {
-      float: left;
-      width: 280px;
-      @media (min-width: 40rem) {
-        width: 450px;
+    .dogs {
+      .header {
+        font-size: 1.3em;
+      }
+    }
+    .trainers {
+      .header {
+        font-size: 1.3em;
+      }
+    }
+    .location {
+      .header {
+        font-size: 1.3em;
+      }
+    }
+  }
+  .training {
+    float: left;
+    .cover {
+      height: 200px;
+      width: 100%;
+      max-width: 600px;
+      background-color: #EEE;
+      margin: 0 0 20px;
+    }
+    .goal, .description, .date {
+      margin-bottom: 10px;
+      label {
+        float: left;
+        width: 100px;
+        font-weight: 100;
+        font-size: 1.2em;
+      }
+      span {
+        float: left;
+        width: 280px;
+        @media (min-width: 40rem) {
+          width: 450px;
+        }
       }
     }
   }

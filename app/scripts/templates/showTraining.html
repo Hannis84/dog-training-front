@@ -1,17 +1,35 @@
-<div class="show-training">
-  <div class="training-edit action glyphicon glyphicon-edit">Edit</div>
-  <div class="training-remove action glyphicon glyphicon-trash">Remove</div>
-  <figure>
-    <div class="placeholder">
-    <% if (image) { %>
-      <img class="cover" src="data:image/jpeg;base64,<%- image %>">
-    <% } %>
+<div class="show-training clearfix">
+  <div class="details">
+    <div class="type">
+      <div class="<%- glyphicon %> icon"></div>
+      <div class="sport">Agility</div>
     </div>
-  </figure>
-  <div class="information">
-    <div class="date clearfix"><label>Date:</label><span><%- date %></span></div>
-    <div class="date clearfix"><label>With:</label><span><%- dog.name %></span></div>
-    <div class="goal clearfix"><label>Goal:</label><span><%- goal %></span></div>
-    <div class="description clearfix"><label>Description:</label><span><%- description %></span></div>
+    <div class="dogs">
+      <div class="header">Dogs:</div>
+
+    </div>
+    <div class="trainers">
+      <div class="header">Trainers:</div>
+    </div>
+    <div class="location">
+      <div class="header">Location:</div>
+    </div>
+  </div>
+  <div class="training">
+    <div class="training-edit action glyphicon glyphicon-edit">Edit</div>
+    <div class="training-remove action glyphicon glyphicon-trash">Remove</div>
+    <figure>
+      <div class="placeholder">
+      <% if (image) { %>
+        <img class="cover" src="data:image/jpeg;base64,<%- image %>">
+      <% } %>
+      </div>
+    </figure>
+    <div class="information">
+      <div class="date clearfix"><label>Date:</label><span><%- date %></span></div>
+      <div class="date clearfix"><label>With:</label><span><%- dog.name %></span></div>
+      <div class="goal clearfix"><label>Goal:</label><span><%- goal %></span></div>
+      <div class="description clearfix"><label>Description:</label><span><%- description %></span></div>
+    </div>
   </div>
 </div>
