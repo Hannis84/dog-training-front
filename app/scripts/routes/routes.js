@@ -29,7 +29,9 @@ module.exports = Backbone.Router.extend({
   index: function () {
     this.auth(function () {
       $('#log-out').removeClass('hidden');
-      this.render(new TrainingsView());
+      Dogs.fetch({success: function () {
+        this.render(new TrainingsView({dogs: Dogs.models}));
+      }.bind(this)});
     }.bind(this));
   },
 

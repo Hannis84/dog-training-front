@@ -3,5 +3,18 @@
   <div class="training-actions">
     <span id="training-add" class="training-add">+</span>
   </div>
+  <div class="filters clearfix">
+    <section class="dog-filter">
+      <span class="active">All</span>
+      <% for (var dog in dogs) { %>
+        <span><%- dogs[dog].get('name') %></span>
+      <% } %>
+    </section>
+    <section class="time-filter">
+      <span class="active">All</span>
+      <span>Past</span>
+      <span>Upcoming</span>
+    </section>
+  </div>
 </div>
 <div class="training-sessions"></div>

@@ -3,6 +3,7 @@
 var Backbone = require('backbone');
 var Trainings = require('../collections/trainings');
 var TrainingView = require('./training');
+var Common = require('../common');
 Backbone.$ = window.$;
 
 module.exports = Backbone.View.extend({
@@ -11,15 +12,19 @@ module.exports = Backbone.View.extend({
   template: JST['trainings'],
 
   events: {
-    'click #training-add': 'new'
+    'click #training-add': 'new',
+    'click .dog-filter span': 'filterByDog',
+    'click .time-filter span': 'filterByTime'
   },
 
-  initialize: function () {
+  initialize: function (options) {
+    this.dogs = options.dogs;
+
     this.listenTo(Trainings, 'add', this.add);
   },
 
   render: function () {
-    this.$el.html(this.template());
+    this.$el.html(this.template({dogs: this.dogs}));
     this.$training = this.$('.training-sessions');
 
     Trainings.fetch();
@@ -34,6 +39,28 @@ module.exports = Backbone.View.extend({
 
   new: function () {
     Backbone.history.navigate('/trainings/new', {trigger: true});
-  }
+  },
+
+  filterOne: function (training) {
+    training.trigger('visible');
+  },
+
+  filterByDog: function (e) {
+    Common.dogFilter = e.target.innerText;
+
+    $('.dog-filter span').removeClass('active');
+    $(e.target).addClass('active');
+
+    Trainings.forEach(this.filterOne, this);
+  },
+
+  filterByTime: function (e) {
+    Common.timeFilter = e.target.innerText;
+
+    $('.time-filter span').removeClass('active');
+    $(e.target).addClass('active');
+
+    Trainings.forEach(this.filterOne, this);
+  },
 
 });

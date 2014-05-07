@@ -1,9 +1,9 @@
 'use strict';
 
-var Common = function () {
-  return {
-    activeView: undefined
-  };
-}
+var Common = {
+    activeView: undefined,
+    dogFilter: 'All',
+    timeFilter: 'All'
+};
 
 module.exports = Common;
