@@ -1,4 +1,78 @@
 .new-result {
   width: 80%;
   margin: 0 auto;
+  select {
+    width: 94%;
+  }
+  .feedback {
+    .positive, .negative {
+      width: 100%;
+      float: left;
+      @media (min-width: 40rem) {
+        width: 50%;
+      }
+      > span {
+        font-weight: bold;
+        margin-bottom: 10px;
+        display: inline-block;
+      }
+      input {
+        width: 85%;
+        margin-bottom: 7px;
+        display: inline-block;
+      }
+      .positive-add, .negative-add {
+        margin-left: 15px;
+        margin-bottom: 20px;
+      }
+    }
+    .positive {
+      .form-group {
+        > div:before {
+          content: '+';
+          width: 15px;
+          display: inline-block;
+        }
+      }
+    }
+    .negative {
+      .form-group {
+        > div:before {
+          content: '-';
+          width: 15px;
+          display: inline-block;
+        }
+      }
+    }
+  }
+  .overall {
+    input[type="radio"] {
+      width: 60px;
+      height: 60px;
+      opacity: 0;
+      position: absolute;
+      margin: 0;
+      z-index: 100;
+      cursor: pointer;
+    }
+    input[type="radio"] + label {
+      float: left;
+      margin-right: 10px;
+      width: 60px;
+      height: 60px;
+      border-radius: 24px;
+      cursor: pointer;
+      text-align: center;
+      line-height: 50px;
+      font-size: 4em;
+      position: static !important;
+      &:before {
+        position: relative;
+        top: 5px;
+      }
+    }
+    input[type="radio"]:checked + label {
+      color: #228B22;
+    }
+  }
 }

@@ -111,9 +111,9 @@ module.exports = Backbone.Router.extend({
     }.bind(this));
   },
 
-  newResult: function (trainingId, resultId) {
+  newResult: function (trainingId) {
     this.auth(function () {
-      this.render(new ResultFormView({model: new Result()}));
+      this.render(new ResultFormView({model: new Result(), trainingId: trainingId}));
     }.bind(this));
   },
 

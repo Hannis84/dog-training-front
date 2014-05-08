@@ -1,13 +1,42 @@
 <form id="result-form">
   <div class="form-group">
     <label>Goal archieved</label>
-    <select class="form-control">
-      <option>Yes</option>
-      <option>No</option>
-      <option>Partly</option>
+    <select name="archieved" class="form-control">
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+      <option value="partly">Partly</option>
     </select>
   </div>
-  <div class="form-group">
-
+  <div class="feedback clearfix">
+    <div class="positive">
+      <span>Positive results</span>
+      <div id="positive-results" class="form-group">
+        <div><input name="positive" type="text" class="form-control"></div>
+        <div><input name="positive" type="text" class="form-control"></div>
+        <div><input name="positive" type="text" class="form-control"></div>
+        <div><input name="positive" type="text" class="form-control"></div>
+      </div>
+      <button class="positive-add btn btn-default">Add</button>
+    </div>
+    <div class="negative">
+      <span>Negative results</span>
+      <div id="negative-results" class="form-group">
+        <div><input name="negative" type="text" class="form-control"></div>
+        <div><input name="negative" type="text" class="form-control"></div>
+        <div><input name="negative" type="text" class="form-control"></div>
+        <div><input name="negative" type="text" class="form-control"></div>
+      </div>
+      <button class="negative-add btn btn-default">Add</button>
+    </div>
   </div>
+  <div class="form-group">
+    <label>Select training mood</label>
+    <div class="overall clearfix">
+      <input name="mood" type="radio" value="happy"><label class="icon-happy"></label></input>
+      <input name="mood" type="radio" value="smiley"><label class="icon-smiley"></label></input>
+      <input name="mood" type="radio" value="neutral"><label class="icon-neutral"></label></input>
+      <input name="mood" type="radio" value="sad"><label class="icon-sad"></label></input>
+    </div>
+  </div>
+  <button class="btn btn-default">Submit</button>
 </form>
