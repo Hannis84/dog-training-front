@@ -3,7 +3,8 @@
 var Common = {
     activeView: undefined,
     dogFilter: 'All',
-    timeFilter: 'All'
+    timeFilter: 'All',
+    isLoggedIn: false
 };
 
 module.exports = Common;

@@ -64,7 +64,7 @@ module.exports = Backbone.View.extend({
 
     xhr.onload = function () {
       if (xhr.status === 200) {
-        var url = this.editing ? '/trainings/' + this.model.get('_id') : '';
+        var url = this.editing ? '/trainings/' + this.model.get('_id') : '/sessions';
         Backbone.history.navigate(url, {trigger: true});
       } else {
         console.log('error');

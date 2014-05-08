@@ -31,7 +31,7 @@ module.exports = Backbone.View.extend({
 
   destroy: function () {
     this.model.destroy();
-    Backbone.history.navigate('/', {trigger: true});
+    Backbone.history.navigate('/sessions', {trigger: true});
   },
 
   add: function () {

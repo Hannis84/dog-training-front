@@ -1,0 +1,37 @@
+.welcome {
+  color: #42221f;
+  .section {
+    padding: 30px 0 60px;
+  }
+  .register-dogs {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background: #eee;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2) inset;
+  }
+  .wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .column {
+    float: left;
+    width: 60%;
+  }
+  .left {
+    padding-right: 20px;
+  }
+  .right {
+    padding-left: 20px;
+  }
+  h2 {
+    margin-bottom: 30px;
+  }
+  .image {
+    width: 40%;
+    text-align: center;
+    padding-top: 35px;
+  }
+  .glyphicon {
+    font-size: 128px;
+  }
+}

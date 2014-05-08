@@ -26,12 +26,14 @@ module.exports = Backbone.View.extend({
 
   login: function (e) {
     e.preventDefault();
+    var self = this;
     $.ajax({
       type: 'post',
       url: '/api/login',
       data: this.$loginForm.serialize(),
       success: function (data, status) {
-        Backbone.history.navigate('', {trigger: true});
+        self.showNavigation();
+        Backbone.history.navigate('/sessions', {trigger: true});
       },
       error: function (data, status, err) {
         console.log(data.status);
@@ -41,12 +43,14 @@ module.exports = Backbone.View.extend({
 
   signup: function (e) {
     e.preventDefault();
+    var self = this;
     $.ajax({
       type: 'post',
       url: '/api/signup',
       data: this.$signupForm.serialize(),
       success: function (data, status) {
-        Backbone.history.navigate('', {trigger: true});
+        self.showNavigation();
+        Backbone.history.navigate('/sessions', {trigger: true});
       },
       error: function (data, status, err) {
         if (data.status === 409) {
@@ -54,6 +58,13 @@ module.exports = Backbone.View.extend({
         }
       }
     });
+  },
+
+  showNavigation: function (e) {
+    $('.main-header .dogs').removeClass('hidden');
+    $('.main-header .sessions').removeClass('hidden');
+    $('#log-out').removeClass('hidden');
+    $('#sign-in').addClass('hidden');
   }
 
 });

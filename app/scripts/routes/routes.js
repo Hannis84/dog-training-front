@@ -2,6 +2,7 @@
 var Backbone = require('backbone');
 Backbone.$ = window.$;
 
+var WelcomeView = require('../views/welcome');
 var LoginView = require('../views/login');
 var TrainingsView = require('../views/trainings');
 var TrainingView = require('../views/showTraining');
@@ -19,6 +20,7 @@ module.exports = Backbone.Router.extend({
 
   routes: {
     '(/)': 'index',
+    '(/)sessions': 'sessions',
     '(/)login(/)': 'showLogin',
     '(/)trainings/new': 'newTraining',
     '(/)trainings/:id(/)': 'showTraining',
@@ -30,6 +32,22 @@ module.exports = Backbone.Router.extend({
   },
 
   index: function () {
+    if (Common.activeView) {
+      Common.activeView.trigger('destroy');
+    }
+
+    if (Common.isLoggedIn) {
+      this.showNavigation();
+    } else {
+      this.hideNavigation();
+    }
+
+    var view = new WelcomeView();
+    Common.activeView = view;
+    $('div[role="main"]').html(view.render().el);
+  },
+
+  sessions: function () {
     this.auth(function () {
       $('#log-out').removeClass('hidden');
       Dogs.fetch({success: function () {
@@ -102,18 +120,35 @@ module.exports = Backbone.Router.extend({
   auth: function (callback) {
     // See Global AjaxSetup for 401
     $.get('/api/authenticated', function () {
+      Common.isLoggedIn = true;
       callback();
     });
   },
 
   render: function (view) {
     if (Common.activeView) {
-      Common.activeView.trigger('remove');
+      Common.activeView.trigger('destroy');
     }
 
-    Common.activeView = view;
+    this.showNavigation();
 
-    $('div[role="main"]').html(view.render().el);
+    Common.activeView = view;
+    var body = $('<div/>', {'class': 'wrapper'}).html(view.render().el);
+    $('div[role="main"]').html(body);
+  },
+
+  showNavigation: function () {
+    $('.main-header .dogs').removeClass('hidden');
+    $('.main-header .sessions').removeClass('hidden');
+    $('#log-out').removeClass('hidden');
+    $('#sign-in').addClass('hidden');
+  },
+
+  hideNavigation: function () {
+    $('.main-header .dogs').addClass('hidden');
+    $('.main-header .sessions').addClass('hidden');
+    $('#log-out').addClass('hidden');
+    $('#sign-in').removeClass('hidden');
   },
 
   hide: function (elem) {

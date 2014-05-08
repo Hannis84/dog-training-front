@@ -4,6 +4,7 @@
 @import "dogs";
 @import "show";
 @import "result";
+@import "welcome";
 
 html, body {
   height: 100%;
@@ -73,8 +74,8 @@ textarea {
   }
 }
 
-div[role="main"] {
-  margin: 15px auto 0;
+div[role="main"] > .wrapper {
+  margin: 15px auto 30px;
   width: 100%;
   min-height: 600px;
   max-width: 1000px;
@@ -131,6 +132,7 @@ footer {
     max-width: 1000px;
     height: 100%;
     margin: 0 auto;
+    padding: 50px 0;
 
     > * {
       margin-top: 30px;
