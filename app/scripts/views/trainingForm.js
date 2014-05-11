@@ -9,6 +9,8 @@ module.exports = Backbone.View.extend({
   template: JST['trainingForm'],
 
   events: {
+    'click .positive-add': 'addPositive',
+    'click .negative-add': 'addNegative',
     'submit #new': 'save',
     'change .cover': 'preview'
   },
@@ -26,7 +28,7 @@ module.exports = Backbone.View.extend({
   },
 
   preview: function (e) {
-    var input = e.target
+    var input = e.target;
     if (input.files && input.files[0]) {
       var reader = new FileReader();
 
@@ -34,7 +36,7 @@ module.exports = Backbone.View.extend({
         $('.placeholder').html($('<img>', {
           src: event.target.result
         }));
-      }
+      };
 
       reader.readAsDataURL(input.files[0]);
     }
@@ -72,6 +74,26 @@ module.exports = Backbone.View.extend({
     }.bind(this);
 
     xhr.send(formData);
-  }
+  },
+
+  addPositive: function (e) {
+    e.preventDefault();
+    var input = $('<div>').append($('<input/>', {
+      type: 'text',
+      'class': 'form-control',
+      name: 'positive'
+    }));
+    this.$('#positive-results').append(input);
+  },
+
+  addNegative: function (e) {
+    e.preventDefault();
+    var input = $('<div>').append($('<input/>', {
+      type: 'text',
+      'class': 'form-control',
+      name: 'negative'
+    }));
+    this.$('#negative-results').append(input);
+  },
 
 });
