@@ -36,10 +36,12 @@ module.exports = Backbone.View.extend({
   },
 
   sessions: function () {
+    this.hideNavigation();
     Backbone.history.navigate('/sessions', {trigger: true});
   },
 
   dogs: function () {
+    this.hideNavigation();
     Backbone.history.navigate('/dogs', {trigger: true});
   },
 
@@ -60,7 +62,7 @@ module.exports = Backbone.View.extend({
   },
 
   hideNavigation: function () {
-    $('#more').addClass('hidden');
+    if (!$('#more').hasClass('hidden')) $('#more').addClass('hidden');
     $('#user-button').removeClass('happy');
   }
 

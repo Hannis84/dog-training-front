@@ -1,14 +1,14 @@
 <div class="dog clearfix">
+  <div class="dog-header clearfix">
+    <span class="dog-name"><%- name %></span>
+    <div class="dog-edit glyphicon glyphicon-edit"></div>
+  </div>
   <% if (image) { %>
     <img class="dog-picture" src="data:image/jpeg;base64,<%- image %>">
   <% } else { %>
     <div class="dog-picture"></div>
   <% } %>
   <div class="dog-information">
-    <div class="dog-header clearfix">
-      <span class="dog-name"><%- name %></span>
-      <div class="dog-edit glyphicon glyphicon-edit"></div>
-    </div>
     <div class="dog-about">
       <div class="dog-info">
         <div><label>Full name:</label><span><%- fullname %></span></div>
