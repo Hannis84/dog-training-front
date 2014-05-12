@@ -27,35 +27,10 @@
       display: inline-block;
     }
   }
-  .details {
-    float: left;
-    width: 20%;
-    .type {
-      .icon {
-        font-size: 6em;
-      }
-      .sport {
-        font-size: 2em;
-      }
-    }
-    .dogs {
-      .header {
-        font-size: 1.3em;
-      }
-    }
-    .trainers {
-      .header {
-        font-size: 1.3em;
-      }
-    }
-    .location {
-      .header {
-        font-size: 1.3em;
-      }
-    }
-  }
   .training {
-    float: left;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 800px;
     .cover {
       height: 200px;
       width: 100%;
@@ -63,35 +38,75 @@
       background-color: #EEE;
       margin: 0 0 20px;
     }
+    .information {
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(0,0,0,.1);
+    }
+    .info {
+      float: left;
+    }
     .goal, .description, .date {
       margin-bottom: 10px;
       label {
-        float: left;
         width: 100px;
         font-weight: 100;
-        font-size: 1.2em;
+        font-size: 1em;
+        color: rgba(0,0,0,0.5);
+        margin-top: 3px;
+        display: block;
+      }
+      .icon {
+        float: left;
+        font-size: 3em;
+        margin-right: 10px;
+      }
+      .date {
+        margin-top: 10px;
+        font-size: 1.4em;
       }
       span {
         float: left;
         width: 280px;
+        font-size: 1.4em;
         @media (min-width: 40rem) {
           width: 450px;
         }
       }
     }
+    .with {
+      margin-bottom: 10px;
+      float: left;
+      .dog-with {
+        float: left;
+        img {
+          display: block;
+          width: 60%;
+        }
+        span {
+          font-size: 1.4em;
+        }
+      }
+    }
     .results {
-      font-size: 1.2em;
-      margin-top: 50px;
+      font-size: 1em;
+      margin-top: 30px;
       > div {
         margin-bottom: 10px;
       }
       label {
         width: 100px;
         font-weight: 100;
+        font-size: 1em;
+        color: rgba(0,0,0,0.5);
       }
       .header {
-        font-size: 1.2em;
-        border-bottom: 1px solid rgba(0,0,0,.1);
+        font-size: 1.5em;
+      }
+      label {
+        display: block;
+      }
+      .success, .fail {
+        font-size: 1.4em;
       }
       .success {
         color: #228B22;
@@ -99,19 +114,27 @@
       .fail {
         color: #FF3333;
       }
-      .positive, .negative {
-        width: 100%;
-        float: left;
-        margin-bottom: 10px;
-        @media (min-width: 40rem) {
-          width: 50%;
-        }
-        label {
-          border-bottom: 1px solid rgba(0,0,0,.1)
+      .points {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        .positive, .negative {
+          width: 100%;
+          float: left;
+          margin-bottom: 10px;
+          @media (min-width: 40rem) {
+            width: 50%;
+          }
+          .type {
+            text-align: center;
+            color: rgba(0,0,0,.5);
+          }
+          article {
+            font-size: 1.2em;
+          }
         }
       }
       .icon {
-        font-size: 2.5em;
+        font-size: 3em;
       }
     }
   }
