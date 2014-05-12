@@ -14,6 +14,8 @@ var Dogs = require('../collections/dogs');
 var DogFormView = require('../views/dogForm');
 var ResultFormView = require('../views/resultForm');
 var Result = require('../models/result');
+var ProfileView = require('../views/profile');
+var Profile = require('../models/profile');
 var Common = require('../common');
 
 module.exports = Backbone.Router.extend({
@@ -28,7 +30,8 @@ module.exports = Backbone.Router.extend({
     '(/)trainings/:id/results': 'newResult',
     '(/)dogs(/)': 'dogs',
     '(/)dogs/new': 'newDog',
-    '(/)dogs/:id/edit': 'editDog'
+    '(/)dogs/:id/edit': 'editDog',
+    '(/)profile(/)': 'profile'
   },
 
   index: function () {
@@ -57,7 +60,13 @@ module.exports = Backbone.Router.extend({
   },
 
   showLogin: function () {
-    this.hide($('#log-out'));
+
+    if (Common.isLoggedIn) {
+      this.showNavigation();
+    } else {
+      this.hideNavigation();
+    }
+
     this.render(new LoginView());
   },
 
@@ -117,6 +126,15 @@ module.exports = Backbone.Router.extend({
     }.bind(this));
   },
 
+  profile: function () {
+    this.auth(function () {
+      var profile = new Profile();
+      profile.fetch({success: function (profile) {
+        this.render(new ProfileView({model: profile}));
+      }.bind(this)})
+    }.bind(this));
+  },
+
   auth: function (callback) {
     // See Global AjaxSetup for 401
     $.get('/api/authenticated', function () {
@@ -140,14 +158,14 @@ module.exports = Backbone.Router.extend({
   showNavigation: function () {
     $('.main-header .dogs').removeClass('hidden');
     $('.main-header .sessions').removeClass('hidden');
-    $('#log-out').removeClass('hidden');
+    $('#user-button').removeClass('hidden');
     $('#sign-in').addClass('hidden');
   },
 
   hideNavigation: function () {
     $('.main-header .dogs').addClass('hidden');
     $('.main-header .sessions').addClass('hidden');
-    $('#log-out').addClass('hidden');
+    $('#user-button').addClass('hidden');
     $('#sign-in').removeClass('hidden');
   },
 

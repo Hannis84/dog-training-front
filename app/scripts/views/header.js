@@ -13,7 +13,9 @@ module.exports = Backbone.View.extend({
     'click #log-out': 'logout',
     'click #sessions-link': 'sessions',
     'click #dogs-link': 'dogs',
-    'click #sign-in': 'login'
+    'click #sign-in': 'login',
+    'click #user-button': 'open',
+    'click #profile-button': 'profile'
   },
 
   index: function () {
@@ -24,7 +26,9 @@ module.exports = Backbone.View.extend({
     Backbone.history.navigate('/login', {trigger: true});
   },
 
-  logout: function () {
+  logout: function (e) {
+    e.stopPropagation();
+    this.hideNavigation();
     $.post('/api/logout', function () {
       Common.isLoggedIn = false;
       Backbone.history.navigate('/login', {trigger: true});
@@ -37,6 +41,27 @@ module.exports = Backbone.View.extend({
 
   dogs: function () {
     Backbone.history.navigate('/dogs', {trigger: true});
+  },
+
+  open: function () {
+    if (!$('#user-button').hasClass('happy')) {
+      $('#user-button').addClass('happy');
+      $('#more').removeClass('hidden');
+    } else {
+      $('#user-button').removeClass('happy');
+      $('#more').addClass('hidden');
+    }
+  },
+
+  profile: function (e) {
+    e.stopPropagation();
+    this.hideNavigation();
+    Backbone.history.navigate('/profile', {trigger: true});
+  },
+
+  hideNavigation: function () {
+    $('#more').addClass('hidden');
+    $('#user-button').removeClass('happy');
   }
 
 });

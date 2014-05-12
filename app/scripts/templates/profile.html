@@ -1,0 +1,9 @@
+<div class="profile-information">
+  <div class="name"><%- name %></div>
+  <div class="email"><%- email %></div>
+</div>
+<div class="profile-dogs">
+<% _.each(dogs, function (dog) { %>
+  <img class="dog" src="data:image/jpeg;base64,<%- dog.image %>">
+<% }); %>
+</div>

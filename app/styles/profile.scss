@@ -1,0 +1,18 @@
+.profile {
+  margin: 0 auto;
+  width: 80%;
+  max-width: 800px;
+  .profile-information {
+    padding-bottom: 30px;
+    .name { font-size: 3em; }
+    .email { font-size: 1.3em; margin-top: -5px; }
+  }
+  .profile-dogs {
+    .dog {
+      width: 30%;
+      min-width: 100px;
+      height: auto;
+      border-radius: 15px;
+    }
+  }
+}
