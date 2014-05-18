@@ -13,6 +13,10 @@ Next install the latest [SASS](http://sass-lang.com/install).
 $ npm install
 ```
 
+```
+$ npm install gulp -g
+```
+
 ## Start
 
 ```
