@@ -5,11 +5,11 @@ var httpProxy = require('http-proxy');
 var app = express();
 var config = require('./config');
 
-var proxy = httpProxy.createProxyServer({});
+var proxy = new httpProxy.RoutingProxy();
 
-proxy.on('error', function () {
-  console.log('Start the target server!');
-});
+// proxy.on('error', function () {
+//   console.log('Start the target server!');
+// });
 
 function apiProxy() {
   return function (req, res, next) {
@@ -17,8 +17,9 @@ function apiProxy() {
       console.log('wii')
       req.url = req.url.replace('/api', '');
       console.log(req.url);
-      proxy.web(req, res, {
-        target: 'http://dog-training-api.herokuapp.com',
+      proxy.proxyRequest(req, res, {
+        host: 'dog-training-api.herokuapp.com',
+        port: 80,
         changeOrigin: true
       });
     } else {
