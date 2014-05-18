@@ -13,6 +13,9 @@ function apiProxy() {
       console.log('wii')
       req.url = req.url.replace('/api', '');
       proxy.web(req, res, {
+        target: {
+          protocol: 'http'
+        },
         host: 'dog-training-api.herokuapp.com',
         port: 80,
         changeOrigin: true
