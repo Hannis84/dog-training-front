@@ -46,7 +46,7 @@ module.exports = Backbone.View.extend({
   },
 
   filterByDog: function (e) {
-    Common.dogFilter = e.target.innerText;
+    Common.dogFilter = $(e.target).text();
 
     $('.dog-filter span').removeClass('active');
     $(e.target).addClass('active');
