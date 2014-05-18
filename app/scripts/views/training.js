@@ -33,7 +33,6 @@ module.exports = Backbone.View.extend({
   },
 
   isHidden: function () {
-    //console.log(Common.dogFilter);
     return ((Common.dogFilter !==  'All' &&
             this.model.get('dog') !== Common.dogFilter) ||
             (Common.timeFilter !== 'All' &&
