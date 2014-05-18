@@ -13,8 +13,8 @@ module.exports = Backbone.View.extend({
 
   events: {
     'click #training-add': 'new',
-    'click .dog-filter span': 'filterByDog',
-    'click .time-filter span': 'filterByTime'
+    'click .dog-filter .filter': 'filterByDog',
+    'click .time-filter .filter': 'filterByTime'
   },
 
   initialize: function (options) {
@@ -48,16 +48,16 @@ module.exports = Backbone.View.extend({
   filterByDog: function (e) {
     Common.dogFilter = $(e.target).text();
 
-    $('.dog-filter span').removeClass('active');
+    $('.dog-filter .filter').removeClass('active');
     $(e.target).addClass('active');
 
     Trainings.forEach(this.filterOne, this);
   },
 
   filterByTime: function (e) {
-    Common.timeFilter = e.target.innerText;
+    Common.timeFilter = $(e.target).text();
 
-    $('.time-filter span').removeClass('active');
+    $('.time-filter .filter').removeClass('active');
     $(e.target).addClass('active');
 
     Trainings.forEach(this.filterOne, this);

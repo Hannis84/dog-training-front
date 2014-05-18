@@ -7,16 +7,16 @@
   <div class="filters clearfix">
     <% if (dogs.length > 1) { %>
     <section class="dog-filter">
-      <span class="active">All</span>
+      <span class="active filter">All</span>
       <% for (var dog in dogs) { %>
-        <span><%- dogs[dog].get('name') %></span>
+        <span class="filter"><%- dogs[dog].get('name') %></span>
       <% } %>
     </section>
     <% } %>
     <section class="time-filter">
-      <span class="active">All</span>
-      <span>Past</span>
-      <span>Upcoming</span>
+      <span class="active filter">All</span>
+      <span class="filter">Past</span>
+      <span class="filter">Upcoming</span>
     </section>
   </div>
   <% } %>
