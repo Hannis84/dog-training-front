@@ -65,9 +65,9 @@ gulp.task('html', function () {
 gulp.task('connect', function() {
 	var app = connect()
   	.use(require('connect-livereload')({port: 35729}))
-    //.use(connect.static('.tmp'))
-  	.use(connect.static('dist'))
-    .use(connect.directory('dist'))
+    .use(connect.static('.tmp'))
+  	.use(connect.static('app'))
+    .use(connect.directory('app'))
   	.use(function (req, res) {
       if (req.url.indexOf('/api') === 0) {
         req.url = req.url.split('/api').pop();
