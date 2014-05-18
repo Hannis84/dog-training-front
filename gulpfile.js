@@ -9,7 +9,7 @@ var t = require('lodash').template;
 var es = require('event-stream');
 var path = require('path');
 var httpProxy = require('http-proxy');
-var proxy = httpProxy.createProxyServer({});
+var proxy = new httpProxy.RoutingProxy();
 var sass = require('gulp-ruby-sass');
 var clean = require('gulp-clean');
 
@@ -71,8 +71,9 @@ gulp.task('connect', function() {
   	.use(function (req, res) {
       if (req.url.indexOf('/api') === 0) {
         req.url = req.url.split('/api').pop();
-        proxy.web(req, res, {
-          target: 'http://127.0.0.1:3000'
+        proxy.proxyRequest(req, res, {
+          host: '127.0.0.1',
+          port: '3000'
         });
       }
     });
