@@ -12,7 +12,7 @@ function apiProxy() {
     if (req.url.match(new RegExp('^\/api\/'))) {
       req.url = req.url.replace('/api', '');
       proxy.web(req, res, {
-        target: 'http://127.0.0.1:3000',
+        target: 'http://dog-training-api.herokuapp.com:80',
         changeOrigin: true
       });
     } else {
