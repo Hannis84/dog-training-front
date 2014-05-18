@@ -10,12 +10,14 @@ var proxy = httpProxy.createProxyServer({});
 function apiProxy() {
   return function (req, res, next) {
     if (req.url.match(new RegExp('^\/api\/'))) {
+      console.log('wii')
       req.url = req.url.replace('/api', '');
       proxy.web(req, res, {
         target: 'http://dog-training-api.herokuapp.com:80',
         changeOrigin: true
       });
     } else {
+      console.log('woo');
       next();
     }
   };
