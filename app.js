@@ -13,7 +13,8 @@ function apiProxy() {
       console.log('wii')
       req.url = req.url.replace('/api', '');
       proxy.web(req, res, {
-        target: 'http://dog-training-api.herokuapp.com:80',
+        host: 'dog-training-api.herokuapp.com',
+        port: 80,
         changeOrigin: true
       });
     } else {
