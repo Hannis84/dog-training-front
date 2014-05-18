@@ -5,6 +5,8 @@ dog-training-front
 
 First install the backend stuff. Checkout [dog-training-api](https://github.com/Hannis84/dog-training-api).
 
+Next install the latest [SASS](http://sass-lang.com/install).
+
 ***Download dependencies from*** [npm](https://npmjs.org).
 
 ```
