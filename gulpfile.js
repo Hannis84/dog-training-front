@@ -4,6 +4,8 @@ var concat = require('gulp-concat');
 var livereload = require('gulp-livereload');
 var browserify = require('gulp-browserify');
 var prefix = require('gulp-autoprefixer');
+var minify = require('gulp-minify-css');
+var uglify = require('gulp-uglify');
 var connect = require('connect');
 var t = require('lodash').template;
 var es = require('event-stream');
@@ -26,6 +28,7 @@ gulp.task('styles', function () {
     .pipe(sass())
     .on('error', console.log)
     .pipe(prefix('last 1 version', '> 1%'))
+    .pipe(minify())
     .pipe(gulp.dest(dest));
 
   gulp.src('app/styles/bootstrap/fonts/bootstrap/*')
@@ -49,7 +52,8 @@ gulp.task('scripts', function () {
         cb(null, file);
       }))
   ).pipe(concat('main.js'))
-  .pipe(gulp.dest(dest))
+  .pipe(uglify())
+  .pipe(gulp.dest(dest));
 });
 
 gulp.task('images', function () {
