@@ -7,17 +7,18 @@ var config = require('./config');
 
 var proxy = httpProxy.createProxyServer({});
 
+proxy.on('error', function () {
+  console.log('Start the target server!');
+});
+
 function apiProxy() {
   return function (req, res, next) {
     if (req.url.match(new RegExp('^\/api\/'))) {
       console.log('wii')
       req.url = req.url.replace('/api', '');
+      console.log(req.url);
       proxy.web(req, res, {
-        target: {
-          protocol: 'http'
-        },
-        host: 'dog-training-api.herokuapp.com',
-        port: 80,
+        target: 'http://dog-training-api.herokuapp.com',
         changeOrigin: true
       });
     } else {
