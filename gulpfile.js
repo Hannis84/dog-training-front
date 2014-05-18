@@ -1,12 +1,10 @@
+'use strict';
 var gulp = require('gulp');
-var mocha = require('gulp-mocha');
 var concat = require('gulp-concat');
-var template = require('gulp-template');
 var livereload = require('gulp-livereload');
 var browserify = require('gulp-browserify');
 var prefix = require('gulp-autoprefixer');
 var connect = require('connect');
-var lr = require('tiny-lr');
 var t = require('lodash').template;
 var es = require('event-stream');
 var path = require('path');
@@ -15,22 +13,31 @@ var proxy = httpProxy.createProxyServer({});
 var sass = require('gulp-ruby-sass');
 var clean = require('gulp-clean');
 
+var production = false;
+
 proxy.on('error', function () {
   console.log('Start the target server!');
 });
 
 gulp.task('styles', function () {
+  var dest = production ? 'dist/styles' : '.tmp/styles';
+
 	gulp.src('app/styles/main.scss')
     .pipe(sass())
     .on('error', console.log)
-    .pipe(prefix("last 1 version", "> 1%"))
-  	.pipe(gulp.dest('.tmp/styles'))
+    .pipe(prefix('last 1 version', '> 1%'))
+    .pipe(gulp.dest(dest));
 
   gulp.src('app/styles/bootstrap/fonts/bootstrap/*')
-    .pipe(gulp.dest('.tmp/styles/bootstrap'));
+    .pipe(gulp.dest(dest + '/bootstrap'));
+
+  gulp.src('app/styles/fonts/*')
+    .pipe(gulp.dest(dest + '/fonts'));
 });
 
 gulp.task('scripts', function () {
+  var dest = production ? 'dist/scripts' : '.tmp/scripts';
+
 	es.merge(
     gulp.src('app/scripts/main.js')
     	.pipe(browserify())
@@ -42,15 +49,25 @@ gulp.task('scripts', function () {
         cb(null, file);
       }))
   ).pipe(concat('main.js'))
-  .pipe(gulp.dest('.tmp/scripts'))
+  .pipe(gulp.dest(dest))
+});
+
+gulp.task('images', function () {
+  return gulp.src('app/images/*')
+    .pipe(gulp.dest('dist/images'));
+});
+
+gulp.task('html', function () {
+  return gulp.src(['app/index.html', 'app/404.html'])
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('connect', function() {
 	var app = connect()
   	.use(require('connect-livereload')({port: 35729}))
-    .use(connect.static('.tmp'))
-  	.use(connect.static('app'))
-    .use(connect.directory('app'))
+    //.use(connect.static('.tmp'))
+  	.use(connect.static('dist'))
+    .use(connect.directory('dist'))
   	.use(function (req, res) {
       if (req.url.indexOf('/api') === 0) {
         req.url = req.url.split('/api').pop();
@@ -68,10 +85,17 @@ gulp.task('connect', function() {
 });
 
 gulp.task('clean', function () {
-  return gulp.src('.tmp', {read: false}).pipe(clean());
+  return gulp.src('dist', {read: false}).pipe(clean());
 });
 
-gulp.task('default', ['connect', 'scripts', 'styles'], function () {
+gulp.task('build', ['scripts', 'styles', 'images', 'html']);
+
+gulp.task('dist', ['clean'], function () {
+  production = true;
+  gulp.start('build');
+});
+
+gulp.task('default', ['connect', 'scripts', 'styles', 'images'], function () {
   var server = livereload();
 
   gulp.watch([
