@@ -5173,8 +5173,7 @@ button.close {
       float: right; }
   .dogs .dog .dog-picture {
     float: left;
-    width: 120px;
-    height: 150px;
+    width: 150px;
     margin-top: 25px; }
   .dogs .dog .dog-information {
     float: left;
@@ -5407,8 +5406,8 @@ button.close {
   .welcome .wrapper {
     max-width: 1000px;
     margin: 0 auto;
-    padding-left: 10px;
-    padding-right: 10px; }
+    padding-left: 20px;
+    padding-right: 20px; }
   .welcome .column {
     float: left;
     width: 60%; }
